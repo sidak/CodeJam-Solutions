@@ -22,9 +22,12 @@ int main(){
 		ll n,j;
 		inp>>n>>j;
 		ll ct = 0;
-		for(ll i=0; i<(1<<(n-2)) && ct<j; i++){
+
+		ll lt = n==32?(n/2):n;
+
+		for(ll i=0; i<(1<<(lt-2)) && ct<j; i++){
 			string rep = "1";
-			for(ll k=(n-3); k>=0; k--){
+			for(ll k=(lt-3); k>=0; k--){
 				if(i&(1<<k)){
 					rep.pb('1');
 				}
@@ -53,6 +56,9 @@ int main(){
 			}
 			else{
 				ct++;
+				if(n==32){
+					rep += rep;
+				}
 				out<<rep<<" ";
 				for(ll k=0; k<divisors.size(); k++){
 					out<<divisors[k];
